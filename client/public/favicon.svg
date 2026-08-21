@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
+  <!-- Dark OS Background matching your slate-950 theme -->
+  <rect width="256" height="256" rx="60" fill="#020617"/>
+  
+  <!-- Glowing Emerald Terminal Arrow ( > ) -->
+  <path d="M70 70 L140 128 L70 186" fill="none" stroke="#10b981" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Blinking Cursor Line ( _ ) -->
+  <line x1="160" y1="190" x2="210" y2="190" stroke="#10b981" stroke-width="28" stroke-linecap="round"/>
+</svg>
