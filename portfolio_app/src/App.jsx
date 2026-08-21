@@ -4,6 +4,7 @@ import Projects from './components/Projects';
 import Achievements from './components/Achievements';
 import Contact from './components/Contact';
 import Dock from './components/Dock';
+import About from './components/About';
 import './App.css';
 
 function App() {
@@ -12,6 +13,9 @@ function App() {
       <div id="home">
         <Hero />
       </div>
+      <div id="about">
+  <About />
+</div>
       <Skills />
       <div id="projects">
         <Projects />

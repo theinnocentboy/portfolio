@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Home, Mail, FileText, Code2, Trophy } from 'lucide-react';
+import { Home, Mail, FileText, Code2, Trophy, User } from 'lucide-react';
 
 const GithubIcon = ({ size = 20 }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
@@ -15,6 +15,7 @@ const LinkedinIcon = ({ size = 20 }) => (
 
 const dockItems = [
   { id: 'home', label: 'Home', icon: Home, href: '#home' },
+  { id: 'about', label: 'About', icon: User, href: '#about' },
   { id: 'projects', label: 'Projects', icon: Code2, href: '#projects' },
   { id: 'achievements', label: 'Achievements', icon: Trophy, href: '#achievements' }, // Added Achievement Navigation
   { id: 'contact', label: 'Contact', icon: Mail, href: '#contact' }, // Fixed to route to the form
