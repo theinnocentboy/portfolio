@@ -1,16 +1,38 @@
-# React + Vite
+# Portfolio Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A responsive personal portfolio built with React, Vite, Tailwind CSS, and Framer Motion.
 
-Currently, two official plugins are available:
+## Run Locally
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+npm run dev
+```
 
-## React Compiler
+Create `.env` from `.env.example` for the contact form:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```env
+VITE_WEB3FORMS_ACCESS_KEY=your_web3forms_access_key
+```
 
-## Expanding the ESLint configuration
+## Commands
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm run dev      # Start the development server
+npm run build    # Create a production build
+npm run preview  # Preview the production build
+npm run lint     # Run ESLint
+```
+
+## Vercel Deployment
+
+The repository includes a root-level `vercel.json` so Vercel installs dependencies inside `portfolio_app`, runs the local npm build script, and publishes `portfolio_app/dist`.
+
+Use these project settings when configuring Vercel manually:
+
+- Root Directory: repository root, or `portfolio_app` when configuring it manually
+- Build Command: `cd portfolio_app && npm run build` when using the repository root
+- Output Directory: `portfolio_app/dist` when using the repository root
+- Framework Preset: `Vite`
+
+Add `VITE_WEB3FORMS_ACCESS_KEY` under Vercel Project Settings > Environment Variables for Production.
