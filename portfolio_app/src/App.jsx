@@ -6,12 +6,14 @@ import Contact from './components/Contact';
 import Dock from './components/Dock';
 import About from './components/About';
 import ThemeToggle from './components/ThemeToggle';
+import CommandPalette from './components/CommandPalette';
 import './App.css';
 
 function App() {
   return (
     <div className="bg-tokyonight-bg min-h-screen text-tokyonight-fg font-sans selection:bg-tokyonight-green/30 overflow-x-hidden relative pb-28">
       <ThemeToggle />
+      <CommandPalette />
       <div id="home">
         <Hero />
       </div>

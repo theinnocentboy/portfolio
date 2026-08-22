@@ -17,10 +17,13 @@ const About = () => {
         transition={{ duration: 0.6 }}
         className="mb-12 text-center"
       >
-        <h2 className="text-4xl md:text-5xl font-bold text-tokyonight-fg mb-4">
+        <span className="block text-xs font-mono uppercase tracking-[0.3em] text-tokyonight-comment mb-3">
+          System.Info
+        </span>
+        <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight text-tokyonight-fg mb-4">
           System.<span className="text-tokyonight-cyan">Bio</span>
         </h2>
-        <p className="text-tokyonight-fgMuted max-w-2xl mx-auto text-lg">
+        <p className="text-tokyonight-fgMuted max-w-2xl mx-auto text-base md:text-lg font-light">
           A closer look at the process behind the projects.
         </p>
       </motion.div>
@@ -39,7 +42,7 @@ const About = () => {
           <span>~/about-me --verbose</span>
         </div>
 
-        <div className="relative z-10 space-y-4 text-tokyonight-fgDim leading-relaxed">
+        <div className="relative z-10 space-y-4 text-tokyonight-fgDim leading-relaxed font-light">
           <p>
             I'm Sahil — a full-stack developer who likes turning messy, real-world
             problems into working software. Most of what I build sits at the
@@ -62,7 +65,7 @@ const About = () => {
           </p>
         </div>
 
-        <div className="relative z-10 flex flex-wrap gap-3 mt-6 text-sm text-tokyonight-fgMuted">
+        <div className="relative z-10 flex flex-wrap gap-3 mt-6 text-xs font-mono text-tokyonight-fgMuted">
           <div className="flex items-center gap-2 px-3 py-1.5 bg-tokyonight-bgHighlight/50 rounded-full border border-tokyonight-bgHighlight">
             <MapPin size={14} className="text-tokyonight-green" /> India
           </div>
@@ -84,8 +87,8 @@ const About = () => {
               transition={{ duration: 0.4, delay: 0.2 + i * 0.1 }}
               className="text-center"
             >
-              <div className="text-2xl md:text-3xl font-bold text-tokyonight-fg">{stat.value}</div>
-              <div className="text-xs text-tokyonight-comment mt-1 font-mono uppercase tracking-wide">
+              <div className="text-2xl md:text-3xl font-black tracking-tight text-tokyonight-fg">{stat.value}</div>
+              <div className="text-[10px] text-tokyonight-comment mt-1 font-mono uppercase tracking-[0.2em]">
                 {stat.label}
               </div>
             </motion.div>

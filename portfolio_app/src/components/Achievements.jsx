@@ -29,8 +29,11 @@ const Achievements = () => {
   return (
     <section className="py-20 px-6 max-w-4xl mx-auto border-t border-tokyonight-bgHighlight/50">
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-16 text-center">
-        <h2 className="text-4xl md:text-5xl font-bold text-tokyonight-fg mb-4">Mission <span className="text-tokyonight-magenta">Log</span></h2>
-        <p className="text-tokyonight-fgMuted max-w-2xl mx-auto text-lg">Milestones in technical leadership, competitive development, and advanced infrastructure certifications.</p>
+        <span className="block text-xs font-mono uppercase tracking-[0.3em] text-tokyonight-comment mb-3">
+          System.Log
+        </span>
+        <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight text-tokyonight-fg mb-4">Mission <span className="text-tokyonight-magenta">Log</span></h2>
+        <p className="text-tokyonight-fgMuted max-w-2xl mx-auto text-base md:text-lg font-light">Milestones in technical leadership, competitive development, and advanced infrastructure certifications.</p>
       </motion.div>
 
       <div className="relative border-l-2 border-tokyonight-bgHighlight ml-4 md:ml-0 md:pl-0 mb-16">
@@ -41,13 +44,13 @@ const Achievements = () => {
             </div>
             <div className="bg-tokyonight-bgStorm/50 backdrop-blur-sm border border-tokyonight-bgHighlight p-6 rounded-2xl shadow-lg hover:border-tokyonight-comment transition-colors flex-1">
               <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
-                <h3 className="text-xl font-bold text-tokyonight-fgDim">{item.title}</h3>
+                <h3 className="text-lg md:text-xl font-bold tracking-tight text-tokyonight-fgDim">{item.title}</h3>
               </div>
-              <h4 className="text-tokyonight-green font-medium mb-4">{item.organization}</h4>
-              <p className="text-tokyonight-fgMuted leading-relaxed mb-6">{item.description}</p>
+              <h4 className="text-tokyonight-green font-medium text-sm font-mono mb-4">{item.organization}</h4>
+              <p className="text-tokyonight-fgMuted leading-relaxed mb-6 font-light">{item.description}</p>
               <div className="flex flex-wrap gap-2">
                 {item.tags.map((tag, i) => (
-                  <span key={i} className="px-3 py-1 bg-tokyonight-bgHighlight/50 text-tokyonight-fgDim text-xs font-medium rounded-full border border-tokyonight-bgHighlight">{tag}</span>
+                  <span key={i} className="px-3 py-1 bg-tokyonight-bgHighlight/50 text-tokyonight-fgDim text-xs font-mono rounded-full border border-tokyonight-bgHighlight">{tag}</span>
                 ))}
               </div>
             </div>
@@ -62,13 +65,13 @@ const Achievements = () => {
         viewport={{ once: true }}
         className="flex flex-col items-center justify-center bg-gradient-to-b from-tokyonight-bgStorm/0 to-tokyonight-bgStorm/80 p-8 rounded-3xl border border-tokyonight-bgHighlight/50 text-center"
       >
-        <h3 className="text-2xl font-bold text-tokyonight-fg mb-3">Ready to scale your engineering team?</h3>
-        <p className="text-tokyonight-fgMuted mb-8 max-w-md">I am actively open for roles where I can leverage my full-stack architecture and networking expertise.</p>
+        <h3 className="text-2xl font-bold tracking-tight text-tokyonight-fg mb-3">Ready to scale your engineering team?</h3>
+        <p className="text-tokyonight-fgMuted mb-8 max-w-md font-light">I am actively open for roles where I can leverage my full-stack architecture and networking expertise.</p>
         <motion.a 
           href="#contact"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="flex items-center gap-2 bg-tokyonight-magenta hover:bg-tokyonight-magenta/80 text-tokyonight-bg px-8 py-4 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(187,154,247,0.3)] hover:shadow-[0_0_40px_rgba(187,154,247,0.5)]"
+          className="flex items-center gap-2 bg-tokyonight-magenta hover:bg-tokyonight-magenta/80 text-tokyonight-bg px-8 py-4 rounded-xl font-bold tracking-tight transition-all shadow-[0_0_20px_rgba(187,154,247,0.3)] hover:shadow-[0_0_40px_rgba(187,154,247,0.5)]"
         >
           Initiate Connection <ArrowRight size={20} />
         </motion.a>
