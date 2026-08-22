@@ -27,27 +27,27 @@ const achievements = [
 
 const Achievements = () => {
   return (
-    <section className="py-20 px-6 max-w-4xl mx-auto border-t border-slate-800/50">
+    <section className="py-20 px-6 max-w-4xl mx-auto border-t border-tokyonight-bgHighlight/50">
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-16 text-center">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Mission <span className="text-purple-400">Log</span></h2>
-        <p className="text-slate-400 max-w-2xl mx-auto text-lg">Milestones in technical leadership, competitive development, and advanced infrastructure certifications.</p>
+        <h2 className="text-4xl md:text-5xl font-bold text-tokyonight-fg mb-4">Mission <span className="text-tokyonight-magenta">Log</span></h2>
+        <p className="text-tokyonight-fgMuted max-w-2xl mx-auto text-lg">Milestones in technical leadership, competitive development, and advanced infrastructure certifications.</p>
       </motion.div>
 
-      <div className="relative border-l-2 border-slate-800 ml-4 md:ml-0 md:pl-0 mb-16">
+      <div className="relative border-l-2 border-tokyonight-bgHighlight ml-4 md:ml-0 md:pl-0 mb-16">
         {achievements.map((item, index) => (
           <motion.div key={index} initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: index * 0.2 }} className="mb-12 relative pl-8 md:pl-0 md:flex md:gap-8 items-start group">
-            <div className="absolute -left-[17px] md:static md:w-12 md:h-12 flex-shrink-0 bg-slate-900 border-2 border-slate-700 rounded-full flex items-center justify-center group-hover:border-purple-500 group-hover:shadow-[0_0_15px_rgba(168,85,247,0.4)] transition-all duration-300 z-10 mt-1">
-              <item.icon size={20} className="text-slate-400 group-hover:text-purple-400 transition-colors" />
+            <div className="absolute -left-[17px] md:static md:w-12 md:h-12 flex-shrink-0 bg-tokyonight-bgStorm border-2 border-tokyonight-bgHighlight rounded-full flex items-center justify-center group-hover:border-tokyonight-magenta group-hover:shadow-[0_0_15px_rgba(187,154,247,0.4)] transition-all duration-300 z-10 mt-1">
+              <item.icon size={20} className="text-tokyonight-fgMuted group-hover:text-tokyonight-magenta transition-colors" />
             </div>
-            <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800 p-6 rounded-2xl shadow-lg hover:border-slate-700 transition-colors flex-1">
+            <div className="bg-tokyonight-bgStorm/50 backdrop-blur-sm border border-tokyonight-bgHighlight p-6 rounded-2xl shadow-lg hover:border-tokyonight-comment transition-colors flex-1">
               <div className="flex flex-col md:flex-row md:justify-between md:items-center mb-2">
-                <h3 className="text-xl font-bold text-slate-200">{item.title}</h3>
+                <h3 className="text-xl font-bold text-tokyonight-fgDim">{item.title}</h3>
               </div>
-              <h4 className="text-emerald-400 font-medium mb-4">{item.organization}</h4>
-              <p className="text-slate-400 leading-relaxed mb-6">{item.description}</p>
+              <h4 className="text-tokyonight-green font-medium mb-4">{item.organization}</h4>
+              <p className="text-tokyonight-fgMuted leading-relaxed mb-6">{item.description}</p>
               <div className="flex flex-wrap gap-2">
                 {item.tags.map((tag, i) => (
-                  <span key={i} className="px-3 py-1 bg-slate-800/50 text-slate-300 text-xs font-medium rounded-full border border-slate-700">{tag}</span>
+                  <span key={i} className="px-3 py-1 bg-tokyonight-bgHighlight/50 text-tokyonight-fgDim text-xs font-medium rounded-full border border-tokyonight-bgHighlight">{tag}</span>
                 ))}
               </div>
             </div>
@@ -60,15 +60,15 @@ const Achievements = () => {
         initial={{ opacity: 0, y: 20 }} 
         whileInView={{ opacity: 1, y: 0 }} 
         viewport={{ once: true }}
-        className="flex flex-col items-center justify-center bg-gradient-to-b from-slate-900/0 to-slate-900/80 p-8 rounded-3xl border border-slate-800/50 text-center"
+        className="flex flex-col items-center justify-center bg-gradient-to-b from-tokyonight-bgStorm/0 to-tokyonight-bgStorm/80 p-8 rounded-3xl border border-tokyonight-bgHighlight/50 text-center"
       >
-        <h3 className="text-2xl font-bold text-white mb-3">Ready to scale your engineering team?</h3>
-        <p className="text-slate-400 mb-8 max-w-md">I am actively open for roles where I can leverage my full-stack architecture and networking expertise.</p>
+        <h3 className="text-2xl font-bold text-tokyonight-fg mb-3">Ready to scale your engineering team?</h3>
+        <p className="text-tokyonight-fgMuted mb-8 max-w-md">I am actively open for roles where I can leverage my full-stack architecture and networking expertise.</p>
         <motion.a 
           href="#contact"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="flex items-center gap-2 bg-purple-600 hover:bg-purple-500 text-white px-8 py-4 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(147,51,234,0.3)] hover:shadow-[0_0_40px_rgba(147,51,234,0.5)]"
+          className="flex items-center gap-2 bg-tokyonight-magenta hover:bg-tokyonight-magenta/80 text-tokyonight-bg px-8 py-4 rounded-xl font-bold transition-all shadow-[0_0_20px_rgba(187,154,247,0.3)] hover:shadow-[0_0_40px_rgba(187,154,247,0.5)]"
         >
           Initiate Connection <ArrowRight size={20} />
         </motion.a>

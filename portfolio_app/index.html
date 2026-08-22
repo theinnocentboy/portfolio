@@ -1,34 +1,53 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
+
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme-preference');
+        if (stored === 'light' || stored === 'dark') {
+          document.documentElement.style.colorScheme = stored;
+        }
+        // if stored is 'system' or missing, do nothing — :root's
+        // `color-scheme: light dark` already follows the OS preference
+      } catch (e) { }
+    })();
+  </script>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Sheikh Sahil's full-stack developer portfolio featuring AI products, web applications, and engineering projects." />
+  <meta name="description"
+    content="Sheikh Sahil's full-stack developer portfolio featuring AI products, web applications, and engineering projects." />
   <title>Sheikh Sahil | Full-Stack Developer</title>
 
   <!-- Open Graph / Facebook / LinkedIn / WhatsApp -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://sheikhsahil.me/" />
   <meta property="og:title" content="Sheikh Sahil | Full-Stack Developer" />
-  <meta property="og:description" content="Full-stack developer specializing in Python, Java, and AI-integrated web applications. Explore my projects and skills." />
+  <meta property="og:description"
+    content="Full-stack developer specializing in Python, Java, and AI-integrated web applications. Explore my projects and skills." />
   <meta property="og:image" content="https://sheikhsahil.me/og-image.png" />
   <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="600" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:site_name" content="Sheikh Sahil" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:url" content="https://sheikhsahil.me/" />
   <meta name="twitter:title" content="Sheikh Sahil | Full-Stack Developer" />
-  <meta name="twitter:description" content="Full-stack developer specializing in Python, Java, and AI-integrated web applications. Explore my projects and skills." />
+  <meta name="twitter:description"
+    content="Full-stack developer specializing in Python, Java, and AI-integrated web applications. Explore my projects and skills." />
   <meta name="twitter:image" content="https://sheikhsahil.me/og-image.png" />
 
   <!-- Canonical -->
   <link rel="canonical" href="https://sheikhsahil.me/" />
 </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
 </html>

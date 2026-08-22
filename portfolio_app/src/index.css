@@ -1,7 +1,39 @@
 @import "tailwindcss";
 
+@theme {
+  /* Tokyo Night Storm (dark) / Tokyo Night Light — auto-switches via color-scheme */
+  --color-tokyonight-bg: light-dark(#e6e7ed, #1a1b26);
+  --color-tokyonight-bgStorm: light-dark(#d8dae1, #24283b);
+  --color-tokyonight-bgHighlight: light-dark(#c3c6d1, #414868);
+
+  --color-tokyonight-fg: light-dark(#343b58, #c0caf5);
+  --color-tokyonight-fgDim: light-dark(#40434f, #a9b1d6);
+  --color-tokyonight-fgMuted: light-dark(#5a5f75, #9aa5ce);
+  --color-tokyonight-comment: light-dark(#6c6e75, #565f89);
+
+  --color-tokyonight-red: light-dark(#8c4351, #f7768e);
+  --color-tokyonight-orange: light-dark(#965027, #ff9e64);
+  --color-tokyonight-yellow: light-dark(#8f5e15, #e0af68);
+  --color-tokyonight-green: light-dark(#385f0d, #9ece6a);
+  --color-tokyonight-teal: light-dark(#33635c, #73daca);
+  --color-tokyonight-cyan: light-dark(#0f4b6e, #7dcfff);
+  --color-tokyonight-blue: light-dark(#2959aa, #7aa2f7);
+  --color-tokyonight-magenta: light-dark(#5a3e8e, #bb9af7);
+}
+
+:root {
+  /* Default: follow the OS/browser preference until the user picks explicitly */
+  color-scheme: light dark;
+}
+
 html {
 	scroll-behavior: smooth;
+	background-color: var(--color-tokyonight-bg);
+}
+
+body {
+	background-color: var(--color-tokyonight-bg);
+	color: var(--color-tokyonight-fg);
 }
 
 .dock-scroll {

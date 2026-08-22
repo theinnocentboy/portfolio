@@ -9,7 +9,7 @@ const stats = [
 
 const About = () => {
   return (
-    <section className="py-20 px-6 max-w-4xl mx-auto border-t border-slate-800/50">
+    <section className="py-20 px-6 max-w-4xl mx-auto border-t border-tokyonight-bgHighlight/50">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -17,10 +17,10 @@ const About = () => {
         transition={{ duration: 0.6 }}
         className="mb-12 text-center"
       >
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-          System.<span className="text-cyan-400">Bio</span>
+        <h2 className="text-4xl md:text-5xl font-bold text-tokyonight-fg mb-4">
+          System.<span className="text-tokyonight-cyan">Bio</span>
         </h2>
-        <p className="text-slate-400 max-w-2xl mx-auto text-lg">
+        <p className="text-tokyonight-fgMuted max-w-2xl mx-auto text-lg">
           A closer look at the process behind the projects.
         </p>
       </motion.div>
@@ -30,21 +30,21 @@ const About = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-2xl p-8 shadow-xl relative overflow-hidden"
+        className="bg-tokyonight-bgStorm/50 backdrop-blur-sm border border-tokyonight-bgHighlight rounded-2xl p-8 shadow-xl relative overflow-hidden"
       >
-        <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-64 h-64 bg-tokyonight-cyan/5 rounded-full blur-[100px] pointer-events-none" />
 
-        <div className="flex items-center gap-2 mb-6 text-xs font-mono text-slate-500">
+        <div className="flex items-center gap-2 mb-6 text-xs font-mono text-tokyonight-comment">
           <Terminal size={14} />
           <span>~/about-me --verbose</span>
         </div>
 
-        <div className="relative z-10 space-y-4 text-slate-300 leading-relaxed">
+        <div className="relative z-10 space-y-4 text-tokyonight-fgDim leading-relaxed">
           <p>
             I'm Sahil — a full-stack developer who likes turning messy, real-world
             problems into working software. Most of what I build sits at the
-            intersection of <span className="text-emerald-400 font-medium">web engineering</span> and{' '}
-            <span className="text-cyan-400 font-medium">applied AI</span>: platforms
+            intersection of <span className="text-tokyonight-green font-medium">web engineering</span> and{' '}
+            <span className="text-tokyonight-cyan font-medium">applied AI</span>: platforms
             that don't just look good, but actually solve something — matching
             blood donors faster, helping students study smarter, or screening resumes
             with real NLP instead of keyword matching.
@@ -62,19 +62,19 @@ const About = () => {
           </p>
         </div>
 
-        <div className="relative z-10 flex flex-wrap gap-3 mt-6 text-sm text-slate-400">
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-800/50 rounded-full border border-slate-700">
-            <MapPin size={14} className="text-emerald-400" /> India
+        <div className="relative z-10 flex flex-wrap gap-3 mt-6 text-sm text-tokyonight-fgMuted">
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-tokyonight-bgHighlight/50 rounded-full border border-tokyonight-bgHighlight">
+            <MapPin size={14} className="text-tokyonight-green" /> India
           </div>
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-800/50 rounded-full border border-slate-700">
-            <GraduationCap size={14} className="text-cyan-400" /> Computer Science
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-tokyonight-bgHighlight/50 rounded-full border border-tokyonight-bgHighlight">
+            <GraduationCap size={14} className="text-tokyonight-cyan" /> Computer Science
           </div>
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-slate-800/50 rounded-full border border-slate-700">
-            <Sparkles size={14} className="text-purple-400" /> Open to opportunities
+          <div className="flex items-center gap-2 px-3 py-1.5 bg-tokyonight-bgHighlight/50 rounded-full border border-tokyonight-bgHighlight">
+            <Sparkles size={14} className="text-tokyonight-magenta" /> Open to opportunities
           </div>
         </div>
 
-        <div className="relative z-10 grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-slate-800">
+        <div className="relative z-10 grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-tokyonight-bgHighlight">
           {stats.map((stat, i) => (
             <motion.div
               key={i}
@@ -84,8 +84,8 @@ const About = () => {
               transition={{ duration: 0.4, delay: 0.2 + i * 0.1 }}
               className="text-center"
             >
-              <div className="text-2xl md:text-3xl font-bold text-white">{stat.value}</div>
-              <div className="text-xs text-slate-500 mt-1 font-mono uppercase tracking-wide">
+              <div className="text-2xl md:text-3xl font-bold text-tokyonight-fg">{stat.value}</div>
+              <div className="text-xs text-tokyonight-comment mt-1 font-mono uppercase tracking-wide">
                 {stat.label}
               </div>
             </motion.div>

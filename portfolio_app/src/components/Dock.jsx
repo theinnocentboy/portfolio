@@ -32,10 +32,10 @@ const Dock = () => {
       transition={{ delay: 0.5, type: "spring", stiffness: 200, damping: 20 }}
       className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50"
     >
-      <div className="dock-scroll flex max-w-[calc(100vw-1.5rem)] items-center gap-2 overflow-x-auto px-3 py-2 sm:gap-4 sm:px-6 sm:py-3 bg-slate-900/80 backdrop-blur-md border border-slate-700/50 rounded-full shadow-[0_0_30px_rgba(0,0,0,0.5)]">
+      <div className="dock-scroll flex max-w-[calc(100vw-1.5rem)] items-center gap-2 overflow-x-auto px-3 py-2 sm:gap-4 sm:px-6 sm:py-3 bg-tokyonight-bgStorm/80 backdrop-blur-md border border-tokyonight-bgHighlight/50 rounded-full shadow-[0_0_30px_rgba(0,0,0,0.5)]">
         {dockItems.map((item) => (
           <div key={item.id} className="relative group">
-            <div className="hidden sm:block absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1 bg-slate-800 text-slate-200 text-sm rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-lg border border-slate-700">
+            <div className="hidden sm:block absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1 bg-tokyonight-bgHighlight text-tokyonight-fgDim text-sm rounded-md opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none whitespace-nowrap shadow-lg border border-tokyonight-bgHighlight">
               {item.label}
             </div>
             <motion.a
@@ -46,7 +46,7 @@ const Dock = () => {
               download={item.download ? item.download : undefined}
               whileHover={{ y: -8, scale: 1.2 }}
               whileTap={{ scale: 0.95 }}
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-emerald-400 transition-colors border border-slate-700/50 sm:h-12 sm:w-12"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-tokyonight-bgHighlight text-tokyonight-fgDim hover:bg-tokyonight-comment hover:text-tokyonight-green transition-colors border border-tokyonight-bgHighlight/50 sm:h-12 sm:w-12"
             >
               <item.icon size={20} strokeWidth={2.5} />
             </motion.a>

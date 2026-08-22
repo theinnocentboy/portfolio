@@ -50,21 +50,21 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-24 px-6 max-w-3xl mx-auto relative border-t border-slate-800/50">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
+    <section id="contact" className="py-24 px-6 max-w-3xl mx-auto relative border-t border-tokyonight-bgHighlight/50">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-tokyonight-blue/10 rounded-full blur-[120px] pointer-events-none" />
 
       <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }} className="mb-12 text-center relative z-10">
-        <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-          Initiate <span className="text-blue-500">Connection</span>
+        <h2 className="text-4xl md:text-5xl font-bold text-tokyonight-fg mb-4">
+          Initiate <span className="text-tokyonight-blue">Connection</span>
         </h2>
-        <p className="text-slate-400 text-lg">Send a message below. It routes directly to my secure inbox.</p>
+        <p className="text-tokyonight-fgMuted text-lg">Send a message below. It routes directly to my secure inbox.</p>
       </motion.div>
 
-      <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.2 }} className="relative z-10 bg-slate-900/50 backdrop-blur-sm border border-slate-800 p-8 rounded-2xl shadow-xl">
+      <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.5, delay: 0.2 }} className="relative z-10 bg-tokyonight-bgStorm/50 backdrop-blur-sm border border-tokyonight-bgHighlight p-8 rounded-2xl shadow-xl">
         <form onSubmit={handleSubmit} className="space-y-6">
           
           <div className="space-y-3">
-            <label className="text-sm font-medium text-slate-300">Connection.Intent [Select One]</label>
+            <label className="text-sm font-medium text-tokyonight-fgDim">Connection.Intent [Select One]</label>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
               {intents.map((intent) => (
                 <button
@@ -74,8 +74,8 @@ const Contact = () => {
                   aria-pressed={selectedIntent === intent}
                   className={`px-4 py-3 rounded-lg text-xs font-mono transition-all border flex items-center justify-center gap-2 ${
                     selectedIntent === intent 
-                      ? 'bg-blue-600/20 border-blue-500 text-blue-400 shadow-[0_0_15px_rgba(37,99,235,0.2)]' 
-                      : 'bg-slate-950 border-slate-800 text-slate-400 hover:border-slate-700'
+                      ? 'bg-tokyonight-blue/20 border-tokyonight-blue text-tokyonight-blue shadow-[0_0_15px_rgba(122,162,247,0.2)]' 
+                      : 'bg-tokyonight-bg border-tokyonight-bgHighlight text-tokyonight-fgMuted hover:border-tokyonight-comment'
                   }`}
                 >
                   {selectedIntent === intent && <CheckCircle2 size={14} />}
@@ -87,21 +87,21 @@ const Contact = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-300">System.User [Name]</label>
-              <input type="text" name="name" autoComplete="name" required className="w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-100 transition-all text-sm" placeholder="John Doe" />
+              <label className="text-sm font-medium text-tokyonight-fgDim">System.User [Name]</label>
+              <input type="text" name="name" autoComplete="name" required className="w-full px-4 py-3 bg-tokyonight-bg border border-tokyonight-bgHighlight rounded-lg focus:outline-none focus:ring-2 focus:ring-tokyonight-blue text-tokyonight-fg transition-all text-sm" placeholder="John Doe" />
             </div>
             <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-300">Return.Address [Email]</label>
-              <input type="email" name="email" autoComplete="email" required className="w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-100 transition-all text-sm" placeholder="john@example.com" />
+              <label className="text-sm font-medium text-tokyonight-fgDim">Return.Address [Email]</label>
+              <input type="email" name="email" autoComplete="email" required className="w-full px-4 py-3 bg-tokyonight-bg border border-tokyonight-bgHighlight rounded-lg focus:outline-none focus:ring-2 focus:ring-tokyonight-blue text-tokyonight-fg transition-all text-sm" placeholder="john@example.com" />
             </div>
           </div>
           
           <div className="space-y-2">
-            <label className="text-sm font-medium text-slate-300">Data.Payload [Message]</label>
-            <textarea name="message" required rows="4" className="w-full px-4 py-3 bg-slate-950 border border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-slate-100 transition-all resize-none text-sm" placeholder="We have an open role for a Full-Stack Engineer..."></textarea>
+            <label className="text-sm font-medium text-tokyonight-fgDim">Data.Payload [Message]</label>
+            <textarea name="message" required rows="4" className="w-full px-4 py-3 bg-tokyonight-bg border border-tokyonight-bgHighlight rounded-lg focus:outline-none focus:ring-2 focus:ring-tokyonight-blue text-tokyonight-fg transition-all resize-none text-sm" placeholder="We have an open role for a Full-Stack Engineer..."></textarea>
           </div>
 
-          <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit" disabled={status === 'submitting'} className="w-full py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-lg flex items-center justify-center gap-2 transition-colors disabled:opacity-50 shadow-[0_0_20px_rgba(37,99,235,0.3)] text-sm">
+          <motion.button whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} type="submit" disabled={status === 'submitting'} className="w-full py-4 bg-tokyonight-blue hover:bg-tokyonight-blue/80 text-tokyonight-bg font-bold rounded-lg flex items-center justify-center gap-2 transition-colors disabled:opacity-50 shadow-[0_0_20px_rgba(122,162,247,0.3)] text-sm">
             {status === 'submitting' ? (
               <>
                 <Loader2 size={18} className="animate-spin" />
@@ -116,12 +116,12 @@ const Contact = () => {
           </motion.button>
 
           {status === 'success' && (
-              <motion.div role="status" aria-live="polite" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-emerald-400 text-center p-3 bg-emerald-500/10 rounded-lg border border-emerald-500/20 text-xs font-mono flex items-center justify-center gap-2">
+              <motion.div role="status" aria-live="polite" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-tokyonight-green text-center p-3 bg-tokyonight-green/10 rounded-lg border border-tokyonight-green/20 text-xs font-mono flex items-center justify-center gap-2">
               <CheckCircle2 size={16} /> Transmission successful. Packet routed to secure inbox.
             </motion.div>
           )}
           {status === 'error' && (
-            <motion.div role="alert" aria-live="assertive" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-red-400 text-center p-3 bg-red-500/10 rounded-lg border border-red-500/20 text-xs font-mono flex items-center justify-center gap-2">
+            <motion.div role="alert" aria-live="assertive" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-tokyonight-red text-center p-3 bg-tokyonight-red/10 rounded-lg border border-tokyonight-red/20 text-xs font-mono flex items-center justify-center gap-2">
               <AlertCircle size={16} /> Transmission failed. Please check your connection.
             </motion.div>
           )}
