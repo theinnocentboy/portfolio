@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FileText } from 'lucide-react';
 
 const BOOT_LINES = [
@@ -44,16 +44,21 @@ const TypedLine = ({ text, onDone, speed = 18, skip }) => {
   return <span>{shown}</span>;
 };
 
+// Smooth deceleration curve used globally for dimensional changes and layout shifts
+const smoothTransition = { duration: 0.7, ease: [0.25, 1, 0.36, 1] };
+
 const Hero = () => {
   const reducedMotion = usePrefersReducedMotion();
   const [visibleLines, setVisibleLines] = useState(reducedMotion ? BOOT_LINES.length : 1);
   const [bootDone, setBootDone] = useState(reducedMotion);
+  const [isCollapsed, setIsCollapsed] = useState(reducedMotion);
   const timers = useRef([]);
 
   useEffect(() => {
     if (reducedMotion) {
       setVisibleLines(BOOT_LINES.length);
       setBootDone(true);
+      setIsCollapsed(true);
       return;
     }
     BOOT_LINES.forEach((line, i) => {
@@ -64,62 +69,124 @@ const Hero = () => {
     return () => timers.current.forEach(clearTimeout);
   }, [reducedMotion]);
 
-  const handleLastLineDone = () => setBootDone(true);
+  const handleLastLineDone = () => {
+    setBootDone(true);
+    if (!reducedMotion) {
+      // 1.8 seconds to read the final line before executing the collapse
+      setTimeout(() => setIsCollapsed(true), 1800); 
+    }
+  };
 
   return (
     <section className="min-h-screen flex items-center justify-center px-6 relative overflow-hidden py-24">
       <div aria-hidden="true" className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-tokyonight-blue/[0.07] rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-3xl w-full relative z-10">
-        {/* Terminal window — decorative signature element; the real accessible
-            content (name, role, description) is the h1/p below, marked up normally.
-            This block is hidden from assistive tech to avoid reading rapidly-typed text. */}
+      <div className="max-w-3xl w-full relative z-10 flex flex-col items-center">
+        
+        {/* Terminal Window with Synced Entrance & Exit Animations */}
         <motion.div
-          aria-hidden="true"
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="bg-tokyonight-bgStorm border border-tokyonight-bgHighlight rounded-2xl shadow-2xl overflow-hidden"
+          initial={{
+            opacity: 0,
+            y: 30,
+            maxWidth: reducedMotion ? 260 : 768,
+            height: reducedMotion ? 48 : 320,
+            borderRadius: reducedMotion ? 48 : 16,
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            maxWidth: isCollapsed ? 260 : 768,
+            height: isCollapsed ? 48 : 320,
+            borderRadius: isCollapsed ? 48 : 16,
+          }}
+          transition={{
+            opacity: { duration: 0.6, ease: "easeOut" },
+            y: { duration: 0.6, ease: "easeOut" },
+            default: smoothTransition // Apples perfectly to maxWidth, height, and borderRadius
+          }}
+          className="relative overflow-hidden w-full bg-tokyonight-bgStorm border border-tokyonight-bgHighlight shadow-2xl mx-auto"
         >
-          <div className="flex items-center gap-2 px-5 py-3 border-b border-tokyonight-bgHighlight bg-tokyonight-bgHighlight/20">
-            <span className="h-3 w-3 rounded-full bg-tokyonight-red/70" />
-            <span className="h-3 w-3 rounded-full bg-tokyonight-yellow/70" />
-            <span className="h-3 w-3 rounded-full bg-tokyonight-green/70" />
-            <span className="ml-3 text-xs font-mono text-tokyonight-comment tracking-wide">sys/portfolio — bash</span>
-          </div>
+          <AnimatePresence>
+            {!isCollapsed && (
+              <motion.div
+                key="terminal"
+                exit={{ opacity: 0, scale: 0.95, filter: "blur(4px)" }}
+                transition={{ duration: 0.2 }}
+                className="absolute inset-0 w-full h-full flex flex-col"
+              >
+                {/* Header */}
+                <div className="flex items-center gap-2 px-5 h-12 border-b border-tokyonight-bgHighlight bg-tokyonight-bgHighlight/20 shrink-0">
+                  <span className="h-3 w-3 rounded-full bg-tokyonight-red/70" />
+                  <span className="h-3 w-3 rounded-full bg-tokyonight-yellow/70" />
+                  <span className="h-3 w-3 rounded-full bg-tokyonight-green/70" />
+                  <span className="ml-3 text-xs font-mono text-tokyonight-comment tracking-wide">sys/portfolio — bash</span>
+                </div>
 
-          <div className="px-6 py-8 md:px-10 md:py-10 font-mono text-sm md:text-base space-y-3">
-            {BOOT_LINES.map((line, i) => {
-              if (i >= visibleLines) return null;
-              const isLast = i === BOOT_LINES.length - 1;
-              return (
-                <div key={i} className="flex gap-3 text-tokyonight-fgDim">
-                  <span className="text-tokyonight-blue select-none">{line.prompt}</span>
-                  {isLast ? (
-                    <span>
-                      <TypedLine text={line.text} onDone={handleLastLineDone} skip={reducedMotion} />
-                      {!bootDone && <span className="inline-block w-2 h-4 bg-tokyonight-cyan ml-0.5 animate-pulse align-middle" />}
-                    </span>
-                  ) : (
-                    <span>{line.text}</span>
+                {/* Body */}
+                <div className="px-6 py-6 md:px-10 md:py-8 font-mono text-sm md:text-base space-y-3 flex-1">
+                  {BOOT_LINES.map((line, i) => {
+                    if (i >= visibleLines) return null;
+                    const isLast = i === BOOT_LINES.length - 1;
+                    return (
+                      <div key={i} className="flex gap-3 text-tokyonight-fgDim">
+                        <span className="text-tokyonight-blue select-none">{line.prompt}</span>
+                        {isLast ? (
+                          <span>
+                            <TypedLine text={line.text} onDone={handleLastLineDone} skip={reducedMotion} />
+                            {!bootDone && <span className="inline-block w-2 h-4 bg-tokyonight-cyan ml-0.5 animate-pulse align-middle" />}
+                          </span>
+                        ) : (
+                          <span>{line.text}</span>
+                        )}
+                      </div>
+                    );
+                  })}
+                  {bootDone && (
+                    <motion.div 
+                      initial={{ opacity: 0 }} 
+                      animate={{ opacity: 1 }} 
+                      className="flex gap-3 text-tokyonight-green pt-1"
+                    >
+                      <span className="select-none">&gt;</span>
+                      <span className="flex items-center gap-2">
+                        status: ready_for_connection_
+                        <span className="inline-block w-2 h-4 bg-tokyonight-green animate-pulse" />
+                      </span>
+                    </motion.div>
                   )}
                 </div>
-              );
-            })}
-            {bootDone && (
-              <div className="flex gap-3 text-tokyonight-green pt-1">
-                <span className="select-none">&gt;</span>
-                <span className="flex items-center gap-2">
-                  status: ready_for_connection_
-                  <span className="inline-block w-2 h-4 bg-tokyonight-green animate-pulse" />
-                </span>
-              </div>
+              </motion.div>
             )}
-          </div>
+          </AnimatePresence>
+
+          <AnimatePresence>
+            {isCollapsed && (
+              <motion.div
+                key="badge"
+                initial={{ opacity: 0, filter: "blur(4px)" }}
+                animate={{ opacity: 1, filter: "blur(0px)" }}
+                transition={{ duration: 0.3, delay: 0.1 }}
+                className="absolute inset-0 flex items-center justify-center gap-3 font-mono text-sm tracking-widest text-tokyonight-green font-medium whitespace-nowrap bg-tokyonight-green/5"
+              >
+                <span className="h-3 w-3 rounded-full bg-tokyonight-green shadow-[0_0_8px_rgba(158,206,106,0.8)] animate-pulse" />
+                SYSTEM.STATUS: READY
+              </motion.div>
+            )}
+          </AnimatePresence>
         </motion.div>
 
-        {/* Real accessible content — always in the DOM and in tab order only once visible */}
-        <div className="text-center mt-14">
+        {/* Hero Content - Entrance staggered after terminal, layout transition matches terminal shrink perfectly */}
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          layout 
+          transition={{ 
+            opacity: { duration: 0.6, delay: 0.2, ease: "easeOut" },
+            y: { duration: 0.6, delay: 0.2, ease: "easeOut" },
+            layout: smoothTransition 
+          }} 
+          className="text-center mt-12 w-full"
+        >
           <h1 className="font-mono text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tighter leading-[0.95] text-tokyonight-fg mb-5">
             Sheikh Sahil
           </h1>
@@ -171,7 +238,7 @@ const Hero = () => {
               </motion.a>
             </motion.div>
           )}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
