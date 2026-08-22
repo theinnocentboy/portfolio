@@ -9,11 +9,11 @@ const labels = { system: 'System', light: 'Light', dark: 'Dark' };
 
 function applyTheme(mode) {
   const root = document.documentElement;
-  if (mode === 'system') {
-    root.style.removeProperty('color-scheme');
-  } else {
-    root.style.colorScheme = mode;
-  }
+  root.classList.remove('light', 'dark');
+  if (mode === 'light') root.classList.add('light');
+  if (mode === 'dark') root.classList.add('dark');
+  // mode === 'system' → leave both classes off; the CSS media query
+  // for prefers-color-scheme handles it automatically
 }
 
 const ThemeToggle = () => {

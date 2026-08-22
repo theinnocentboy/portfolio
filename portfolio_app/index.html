@@ -8,10 +8,10 @@
       try {
         var stored = localStorage.getItem('theme-preference');
         if (stored === 'light' || stored === 'dark') {
-          document.documentElement.style.colorScheme = stored;
+          document.documentElement.classList.add(stored);
         }
-        // if stored is 'system' or missing, do nothing — :root's
-        // `color-scheme: light dark` already follows the OS preference
+        // if stored is 'system' or missing, do nothing — the CSS
+        // @media (prefers-color-scheme) rule already handles it
       } catch (e) { }
     })();
   </script>
