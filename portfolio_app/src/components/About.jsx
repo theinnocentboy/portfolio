@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Terminal, MapPin, GraduationCap, Sparkles } from 'lucide-react';
+import GithubActivity from './GithubActivity';
 
 const stats = [
   { label: 'Years Coding', value: '3+' },
@@ -95,6 +96,8 @@ const About = () => {
           ))}
         </div>
       </motion.div>
+
+      <GithubActivity />
     </section>
   );
 };

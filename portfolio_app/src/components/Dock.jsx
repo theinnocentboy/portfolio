@@ -46,7 +46,7 @@ const Dock = () => {
               download={item.download ? item.download : undefined}
               whileHover={{ y: -8, scale: 1.2 }}
               whileTap={{ scale: 0.95 }}
-              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-tokyonight-bgHighlight text-tokyonight-fgDim hover:bg-tokyonight-comment hover:text-tokyonight-green transition-colors border border-tokyonight-bgHighlight/50 sm:h-12 sm:w-12"
+              className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-tokyonight-bgHighlight text-tokyonight-fgDim hover:bg-tokyonight-comment hover:text-tokyonight-green transition-colors border border-tokyonight-bgHighlight/50 sm:h-12 sm:w-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tokyonight-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-tokyonight-bgStorm"
             >
               <item.icon size={20} strokeWidth={2.5} />
             </motion.a>

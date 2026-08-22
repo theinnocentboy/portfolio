@@ -110,9 +110,10 @@ const CommandPalette = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.8 }}
-        className="hidden md:flex fixed bottom-6 left-6 z-40 items-center gap-2 px-3 py-2 rounded-full bg-tokyonight-bgStorm/80 backdrop-blur-md border border-tokyonight-bgHighlight/50 text-tokyonight-fgMuted hover:text-tokyonight-cyan hover:border-tokyonight-cyan/40 transition-colors text-xs font-mono shadow-lg"
+        aria-label="Open command palette (Cmd+K)"
+        className="hidden md:flex fixed bottom-6 left-6 z-40 items-center gap-2 px-3 py-2 rounded-full bg-tokyonight-bgStorm/80 backdrop-blur-md border border-tokyonight-bgHighlight/50 text-tokyonight-fgMuted hover:text-tokyonight-cyan hover:border-tokyonight-cyan/40 transition-colors text-xs font-mono shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tokyonight-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-tokyonight-bg"
       >
-        <Search size={13} />
+        <Search size={13} aria-hidden="true" />
         <span>Search</span>
         <kbd className="px-1.5 py-0.5 rounded bg-tokyonight-bgHighlight text-tokyonight-fgDim text-[10px]">⌘K</kbd>
       </motion.button>
@@ -123,6 +124,7 @@ const CommandPalette = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            role="presentation"
             className="fixed inset-0 z-[100] flex items-start justify-center pt-[15vh] px-4 bg-tokyonight-bg/70 backdrop-blur-sm"
             onClick={close}
           >
@@ -132,21 +134,29 @@ const CommandPalette = () => {
               exit={{ opacity: 0, y: -10, scale: 0.98 }}
               transition={{ type: 'spring', stiffness: 400, damping: 30 }}
               onClick={(e) => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              aria-label="Command palette"
               className="w-full max-w-xl bg-tokyonight-bgStorm border border-tokyonight-bgHighlight rounded-2xl shadow-2xl overflow-hidden"
             >
               <div className="flex items-center gap-3 px-5 py-4 border-b border-tokyonight-bgHighlight">
-                <Terminal size={16} className="text-tokyonight-comment shrink-0" />
+                <Terminal size={16} className="text-tokyonight-comment shrink-0" aria-hidden="true" />
                 <input
                   ref={inputRef}
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Type a command or search..."
+                  aria-label="Search commands"
+                  role="combobox"
+                  aria-expanded="true"
+                  aria-controls="command-palette-list"
+                  aria-activedescendant={filtered[activeIndex] ? `cmd-${filtered[activeIndex].id}` : undefined}
                   className="w-full bg-transparent outline-none text-tokyonight-fg placeholder:text-tokyonight-comment font-mono text-sm"
                 />
                 <kbd className="px-1.5 py-0.5 rounded bg-tokyonight-bgHighlight text-tokyonight-fgDim text-[10px] shrink-0">ESC</kbd>
               </div>
 
-              <div className="max-h-80 overflow-y-auto py-2">
+              <div id="command-palette-list" role="listbox" className="max-h-80 overflow-y-auto py-2">
                 {filtered.length === 0 && (
                   <div className="px-5 py-8 text-center text-tokyonight-comment text-sm font-mono">
                     No matching commands.
@@ -158,13 +168,16 @@ const CommandPalette = () => {
                   return (
                     <button
                       key={cmd.id}
+                      id={`cmd-${cmd.id}`}
+                      role="option"
+                      aria-selected={active}
                       onMouseEnter={() => setActiveIndex(i)}
                       onClick={() => runCommand(cmd)}
-                      className={`w-full flex items-center gap-3 px-5 py-3 text-left transition-colors ${
+                      className={`w-full flex items-center gap-3 px-5 py-3 text-left transition-colors focus-visible:outline-none focus-visible:bg-tokyonight-cyan/10 ${
                         active ? 'bg-tokyonight-cyan/10' : ''
                       }`}
                     >
-                      <Icon size={16} className={active ? 'text-tokyonight-cyan' : 'text-tokyonight-fgMuted'} />
+                      <Icon size={16} className={active ? 'text-tokyonight-cyan' : 'text-tokyonight-fgMuted'} aria-hidden="true" />
                       <span className={`flex-1 text-sm ${active ? 'text-tokyonight-fg' : 'text-tokyonight-fgDim'}`}>
                         {cmd.label}
                       </span>

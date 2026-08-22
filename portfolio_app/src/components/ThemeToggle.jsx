@@ -3,9 +3,12 @@ import { motion } from 'framer-motion';
 import { Sun, Moon, Monitor } from 'lucide-react';
 
 const THEME_KEY = 'theme-preference';
-const modes = ['system', 'light', 'dark'];
-const icons = { system: Monitor, light: Sun, dark: Moon };
-const labels = { system: 'System', light: 'Light', dark: 'Dark' };
+
+const options = [
+  { id: 'light', icon: Sun, label: 'Light' },
+  { id: 'system', icon: Monitor, label: 'System' },
+  { id: 'dark', icon: Moon, label: 'Dark' },
+];
 
 function applyTheme(mode) {
   const root = document.documentElement;
@@ -25,28 +28,50 @@ const ThemeToggle = () => {
     applyTheme(stored);
   }, []);
 
-  const cycle = () => {
-    const next = modes[(modes.indexOf(mode) + 1) % modes.length];
+  const select = (next) => {
     setMode(next);
     localStorage.setItem(THEME_KEY, next);
     applyTheme(next);
   };
 
-  const Icon = icons[mode];
-
   return (
-    <motion.button
-      onClick={cycle}
+    <motion.div
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
-      whileHover={{ scale: 1.08 }}
-      whileTap={{ scale: 0.92 }}
-      aria-label={`Theme: ${labels[mode]}. Click to change.`}
-      title={`Theme: ${labels[mode]}`}
-      className="fixed top-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full bg-tokyonight-bgStorm/80 backdrop-blur-md border border-tokyonight-bgHighlight/50 text-tokyonight-fgDim hover:text-tokyonight-cyan hover:border-tokyonight-cyan/50 transition-colors shadow-lg"
+      className="fixed top-6 right-6 z-50 flex items-center gap-1 p-1 rounded-full bg-tokyonight-bgStorm/80 backdrop-blur-md border border-tokyonight-bgHighlight/50 shadow-lg"
+      role="radiogroup"
+      aria-label="Theme"
     >
-      <Icon size={18} />
-    </motion.button>
+      {options.map(({ id, icon: Icon, label }) => {
+        const active = mode === id;
+        return (
+          <motion.button
+            key={id}
+            onClick={() => select(id)}
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.92 }}
+            role="radio"
+            aria-checked={active}
+            aria-label={label}
+            title={label}
+            className={`relative flex h-8 w-8 items-center justify-center rounded-full transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tokyonight-cyan focus-visible:ring-offset-2 focus-visible:ring-offset-tokyonight-bgStorm ${
+              active
+                ? 'text-tokyonight-bg'
+                : 'text-tokyonight-fgMuted hover:text-tokyonight-cyan'
+            }`}
+          >
+            {active && (
+              <motion.span
+                layoutId="theme-toggle-active"
+                className="absolute inset-0 rounded-full bg-tokyonight-cyan"
+                transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+              />
+            )}
+            <Icon size={16} className="relative z-10" strokeWidth={2.5} />
+          </motion.button>
+        );
+      })}
+    </motion.div>
   );
 };
 
