@@ -4,7 +4,7 @@ import GithubActivity from './GithubActivity';
 
 const stats = [
   { label: 'Years Coding', value: '3+' },
-  { label: 'Projects Shipped', value: '4+' },
+  { label: 'Projects Shipped', value: '2' },
   { label: 'Hackathon Rank', value: '#12/90' },
 ];
 
